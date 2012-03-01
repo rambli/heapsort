@@ -1,0 +1,52 @@
+\hypertarget{structnode}{\section{node Struct Reference}
+\label{structnode}\index{node@{node}}
+}
+
+
+struct node\-: the basic building block of our tree  
+
+
+
+
+{\ttfamily \#include \char`\"{}heapsort.\-h\char`\"{}}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structnode}{node} $\ast$ \hyperlink{structnode_a264c6bb358b6e82049b98821d0f8f3ce}{link} \mbox{[}(2)\mbox{]}
+\item 
+struct \hyperlink{structnode}{node} $\ast$ \hyperlink{structnode_a05e4fe9e0177ba2d8dbd2c487cfddd53}{parent}
+\item 
+int \hyperlink{structnode_a2d890bb9f6af0ffd73fe79b21124c2a2}{data}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+struct node\-: the basic building block of our tree 
+
+
+\begin{DoxyParams}{Parameters}
+{\em link} & -\/ The left and right children links\-: \mbox{[}Left child of parent x\-: \mbox{[}2x+1\mbox{]} Right child\-: \mbox{[}2x+2\mbox{]} \\
+\hline
+{\em parent} & -\/ Parent link of node x, one level up\-: \mbox{[}(x-\/1)/2\mbox{]} \\
+\hline
+{\em data} & -\/ node data \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Field Documentation}
+\hypertarget{structnode_a2d890bb9f6af0ffd73fe79b21124c2a2}{\index{node@{node}!data@{data}}
+\index{data@{data}!node@{node}}
+\subsubsection[{data}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf node\-::data}}}\label{structnode_a2d890bb9f6af0ffd73fe79b21124c2a2}
+Node data \hypertarget{structnode_a264c6bb358b6e82049b98821d0f8f3ce}{\index{node@{node}!link@{link}}
+\index{link@{link}!node@{node}}
+\subsubsection[{link}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf node}$\ast$ {\bf node\-::link}\mbox{[}(2)\mbox{]}}}\label{structnode_a264c6bb358b6e82049b98821d0f8f3ce}
+The left and right children links\-: \mbox{[}Left child of parent x\-: \mbox{[}2x+1\mbox{]} Right child\-: \mbox{[}2x+2\mbox{]} \hypertarget{structnode_a05e4fe9e0177ba2d8dbd2c487cfddd53}{\index{node@{node}!parent@{parent}}
+\index{parent@{parent}!node@{node}}
+\subsubsection[{parent}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf node}$\ast$ {\bf node\-::parent}}}\label{structnode_a05e4fe9e0177ba2d8dbd2c487cfddd53}
+Parent of node x, one level up\-: \mbox{[}(x-\/1)/2\mbox{]} 
+
+The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{heapsort_8h}{heapsort.\-h}\end{DoxyCompactItemize}

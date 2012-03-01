@@ -1,0 +1,378 @@
+\hypertarget{heapsort_8c}{\section{heapsort.\-c File Reference}
+\label{heapsort_8c}\index{heapsort.\-c@{heapsort.\-c}}
+}
+
+
+Heapsort implementation.  
+
+
+{\ttfamily \#include \char`\"{}heapsort.\-h\char`\"{}}\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structnode}{node} $\ast$ \hyperlink{heapsort_8c_a26d30c1276d281da45540af640f1dcd7}{get\-\_\-parent} (\hyperlink{structnode}{node} $\ast$ndata)
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item returns the nodes parent 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+\hyperlink{structnode}{node} $\ast$ \hyperlink{heapsort_8c_ad36118e47d9ffffab93e58b7b3f7ee11}{get\-\_\-rchild} (\hyperlink{structnode}{node} $\ast$parent)
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item returns the parent's right child 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+\hyperlink{structnode}{node} $\ast$ \hyperlink{heapsort_8c_aac6305d68f50a19bda129a21fe90021f}{get\-\_\-lchild} (\hyperlink{structnode}{node} $\ast$parent)
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item returns the parent's left child 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+\hyperlink{heapsort_8h_a297e9e82f4e2f45d3ac0274e00d009bf}{bool} \hyperlink{heapsort_8c_af15334846f377e7c24d0c32f8aad020f}{is\-\_\-leaf\-\_\-node} (\hyperlink{structnode}{node} $\ast$n)
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item returns whether a node is a leaf node or not i.\-e both L and R children are N\-U\-L\-L 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+\hyperlink{structnode}{node} $\ast$ \hyperlink{heapsort_8c_ab73615489927b9e657d3e3268f9c0d74}{get\-\_\-smaller\-\_\-child} (\hyperlink{structnode}{node} $\ast$parent)
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item returns the smaller child 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+void \hyperlink{heapsort_8c_ad3a81e821e38eb6f442392d144ba39d0}{free\-\_\-nodes} (\hyperlink{structnode}{node} $\ast$root)
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item free all nodes in the tree recursively 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+void \hyperlink{heapsort_8c_aa6c835e9bea339bcc4e982c5e32b50c1}{print\-\_\-tree} (\hyperlink{structnode}{node} $\ast$root)
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item print all nodes in the tree recursively 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+\hyperlink{structnode}{node} $\ast$ \hyperlink{heapsort_8c_a571221207113fefeabf2fa6824cbda97}{create\-\_\-node} (int data, \hyperlink{structnode}{node} $\ast$parent)
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item create a new node with the passed in data. Children are set to N\-U\-L\-L 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+\hyperlink{structnode}{node} $\ast$ \hyperlink{heapsort_8c_a99829b9b9446a2ee360a6ea63fe7c45d}{add\-\_\-node} (\hyperlink{structnode}{node} $\ast$root, int data, \hyperlink{structnode}{node} $\ast$parent)
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item Create and add a new node to the passed in root, which is recursively traversed to find the right place where the new node can be inserted. If (data $<$ root-\/$>$data), then it is inserted to the left, else to the right. 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+\hyperlink{structnode}{node} $\ast$ \hyperlink{heapsort_8c_a7015a10ce5db4c8c67441a2a390ee204}{find\-\_\-node} (\hyperlink{structnode}{node} $\ast$root, int data)
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item Find the node which matches the passed in data. 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+void \hyperlink{heapsort_8c_acac0d5c0f61b4b04105e120f8538aa32}{swap} (\hyperlink{structnode}{node} $\ast$child, \hyperlink{structnode}{node} $\ast$parent)
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item Swap parent and child data so child's data is assigned to the parent and vice-\/versa 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+void \hyperlink{heapsort_8c_a580ecbc62e8d2a6d23fef3b89ef14cb2}{normalize\-\_\-tree} (\hyperlink{structnode}{node} $\ast$norm\-\_\-node)
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item The passed in node is tested against its parent, and swapped if it is smaller than the parent. This is done recursively until the condition is satisfied. 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+\hypertarget{heapsort_8c_a568b3afc214ba30be5bf526d6b27b611}{int \hyperlink{heapsort_8c_a568b3afc214ba30be5bf526d6b27b611}{main} (void)}\label{heapsort_8c_a568b3afc214ba30be5bf526d6b27b611}
+
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item main fn to perform heapsort 
+\end{DoxyItemize}\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Heapsort implementation. \begin{DoxyAuthor}{Author}
+Rohan Ambli 
+\end{DoxyAuthor}
+
+
+\subsection{Function Documentation}
+\hypertarget{heapsort_8c_a99829b9b9446a2ee360a6ea63fe7c45d}{\index{heapsort.\-c@{heapsort.\-c}!add\-\_\-node@{add\-\_\-node}}
+\index{add\-\_\-node@{add\-\_\-node}!heapsort.c@{heapsort.\-c}}
+\subsubsection[{add\-\_\-node}]{\setlength{\rightskip}{0pt plus 5cm}{\bf add\-\_\-node} (
+\begin{DoxyParamCaption}
+\item[{{\bf node} $\ast$}]{root, }
+\item[{int}]{data, }
+\item[{{\bf node} $\ast$}]{parent}
+\end{DoxyParamCaption}
+)}}\label{heapsort_8c_a99829b9b9446a2ee360a6ea63fe7c45d}
+
+
+
+\begin{DoxyItemize}
+\item Create and add a new node to the passed in root, which is recursively traversed to find the right place where the new node can be inserted. If (data $<$ root-\/$>$data), then it is inserted to the left, else to the right. 
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em root} & -\/ root node \\
+\hline
+{\em data} & -\/ new data to be added \\
+\hline
+{\em parent} & -\/ parent for the new node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+node $\ast$ -\/ newly created node 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+F\-U\-N\-C\-T\-I\-O\-N I\-S R\-E\-C\-U\-R\-S\-I\-V\-E 
+\end{DoxyNote}
+\hypertarget{heapsort_8c_a571221207113fefeabf2fa6824cbda97}{\index{heapsort.\-c@{heapsort.\-c}!create\-\_\-node@{create\-\_\-node}}
+\index{create\-\_\-node@{create\-\_\-node}!heapsort.c@{heapsort.\-c}}
+\subsubsection[{create\-\_\-node}]{\setlength{\rightskip}{0pt plus 5cm}{\bf create\-\_\-node} (
+\begin{DoxyParamCaption}
+\item[{int}]{data, }
+\item[{{\bf node} $\ast$}]{parent}
+\end{DoxyParamCaption}
+)}}\label{heapsort_8c_a571221207113fefeabf2fa6824cbda97}
+
+
+
+\begin{DoxyItemize}
+\item create a new node with the passed in data. Children are set to N\-U\-L\-L 
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & -\/ Node data \\
+\hline
+{\em parent} & -\/ node parent \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+node $\ast$ -\/ newly created node 
+\end{DoxyReturn}
+\hypertarget{heapsort_8c_a7015a10ce5db4c8c67441a2a390ee204}{\index{heapsort.\-c@{heapsort.\-c}!find\-\_\-node@{find\-\_\-node}}
+\index{find\-\_\-node@{find\-\_\-node}!heapsort.c@{heapsort.\-c}}
+\subsubsection[{find\-\_\-node}]{\setlength{\rightskip}{0pt plus 5cm}{\bf find\-\_\-node} (
+\begin{DoxyParamCaption}
+\item[{{\bf node} $\ast$}]{root, }
+\item[{int}]{data}
+\end{DoxyParamCaption}
+)}}\label{heapsort_8c_a7015a10ce5db4c8c67441a2a390ee204}
+
+
+
+\begin{DoxyItemize}
+\item Find the node which matches the passed in data. 
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em root} & -\/ tree root \\
+\hline
+{\em data} & -\/ data to look for \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+node $\ast$ -\/ node if found, N\-U\-L\-L otherwise 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+F\-U\-N\-C\-T\-I\-O\-N I\-S R\-E\-C\-U\-R\-S\-I\-V\-E 
+\end{DoxyNote}
+\hypertarget{heapsort_8c_ad3a81e821e38eb6f442392d144ba39d0}{\index{heapsort.\-c@{heapsort.\-c}!free\-\_\-nodes@{free\-\_\-nodes}}
+\index{free\-\_\-nodes@{free\-\_\-nodes}!heapsort.c@{heapsort.\-c}}
+\subsubsection[{free\-\_\-nodes}]{\setlength{\rightskip}{0pt plus 5cm}{\bf free\-\_\-nodes} (
+\begin{DoxyParamCaption}
+\item[{{\bf node} $\ast$}]{root}
+\end{DoxyParamCaption}
+)}}\label{heapsort_8c_ad3a81e821e38eb6f442392d144ba39d0}
+
+
+
+\begin{DoxyItemize}
+\item free all nodes in the tree recursively 
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em root} & -\/ tree root \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+F\-U\-N\-C\-T\-I\-O\-N I\-S R\-E\-C\-U\-R\-S\-I\-V\-E 
+\end{DoxyNote}
+\hypertarget{heapsort_8c_aac6305d68f50a19bda129a21fe90021f}{\index{heapsort.\-c@{heapsort.\-c}!get\-\_\-lchild@{get\-\_\-lchild}}
+\index{get\-\_\-lchild@{get\-\_\-lchild}!heapsort.c@{heapsort.\-c}}
+\subsubsection[{get\-\_\-lchild}]{\setlength{\rightskip}{0pt plus 5cm}{\bf get\-\_\-lchild} (
+\begin{DoxyParamCaption}
+\item[{{\bf node} $\ast$}]{parent}
+\end{DoxyParamCaption}
+)}}\label{heapsort_8c_aac6305d68f50a19bda129a21fe90021f}
+
+
+
+\begin{DoxyItemize}
+\item returns the parent's left child 
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & -\/ parent node to get left child of \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+node $\ast$ -\/ left child 
+\end{DoxyReturn}
+\hypertarget{heapsort_8c_a26d30c1276d281da45540af640f1dcd7}{\index{heapsort.\-c@{heapsort.\-c}!get\-\_\-parent@{get\-\_\-parent}}
+\index{get\-\_\-parent@{get\-\_\-parent}!heapsort.c@{heapsort.\-c}}
+\subsubsection[{get\-\_\-parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf get\-\_\-parent} (
+\begin{DoxyParamCaption}
+\item[{{\bf node} $\ast$}]{ndata}
+\end{DoxyParamCaption}
+)}}\label{heapsort_8c_a26d30c1276d281da45540af640f1dcd7}
+
+
+
+\begin{DoxyItemize}
+\item returns the nodes parent 
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em ndata} & -\/ Node to get parent of \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+node $\ast$ -\/ Node's parent 
+\end{DoxyReturn}
+\hypertarget{heapsort_8c_ad36118e47d9ffffab93e58b7b3f7ee11}{\index{heapsort.\-c@{heapsort.\-c}!get\-\_\-rchild@{get\-\_\-rchild}}
+\index{get\-\_\-rchild@{get\-\_\-rchild}!heapsort.c@{heapsort.\-c}}
+\subsubsection[{get\-\_\-rchild}]{\setlength{\rightskip}{0pt plus 5cm}{\bf get\-\_\-rchild} (
+\begin{DoxyParamCaption}
+\item[{{\bf node} $\ast$}]{parent}
+\end{DoxyParamCaption}
+)}}\label{heapsort_8c_ad36118e47d9ffffab93e58b7b3f7ee11}
+
+
+
+\begin{DoxyItemize}
+\item returns the parent's right child 
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & -\/ parent node to get right-\/child of \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+node $\ast$ -\/ right child 
+\end{DoxyReturn}
+\hypertarget{heapsort_8c_ab73615489927b9e657d3e3268f9c0d74}{\index{heapsort.\-c@{heapsort.\-c}!get\-\_\-smaller\-\_\-child@{get\-\_\-smaller\-\_\-child}}
+\index{get\-\_\-smaller\-\_\-child@{get\-\_\-smaller\-\_\-child}!heapsort.c@{heapsort.\-c}}
+\subsubsection[{get\-\_\-smaller\-\_\-child}]{\setlength{\rightskip}{0pt plus 5cm}{\bf get\-\_\-smaller\-\_\-child} (
+\begin{DoxyParamCaption}
+\item[{{\bf node} $\ast$}]{parent}
+\end{DoxyParamCaption}
+)}}\label{heapsort_8c_ab73615489927b9e657d3e3268f9c0d74}
+
+
+
+\begin{DoxyItemize}
+\item returns the smaller child 
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & -\/ Node to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+node $\ast$ -\/ L/\-R child 
+\end{DoxyReturn}
+\hypertarget{heapsort_8c_af15334846f377e7c24d0c32f8aad020f}{\index{heapsort.\-c@{heapsort.\-c}!is\-\_\-leaf\-\_\-node@{is\-\_\-leaf\-\_\-node}}
+\index{is\-\_\-leaf\-\_\-node@{is\-\_\-leaf\-\_\-node}!heapsort.c@{heapsort.\-c}}
+\subsubsection[{is\-\_\-leaf\-\_\-node}]{\setlength{\rightskip}{0pt plus 5cm}{\bf is\-\_\-leaf\-\_\-node} (
+\begin{DoxyParamCaption}
+\item[{{\bf node} $\ast$}]{n}
+\end{DoxyParamCaption}
+)}}\label{heapsort_8c_af15334846f377e7c24d0c32f8aad020f}
+
+
+
+\begin{DoxyItemize}
+\item returns whether a node is a leaf node or not i.\-e both L and R children are N\-U\-L\-L 
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & -\/ Node to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool -\/ true/false 
+\end{DoxyReturn}
+\hypertarget{heapsort_8c_a580ecbc62e8d2a6d23fef3b89ef14cb2}{\index{heapsort.\-c@{heapsort.\-c}!normalize\-\_\-tree@{normalize\-\_\-tree}}
+\index{normalize\-\_\-tree@{normalize\-\_\-tree}!heapsort.c@{heapsort.\-c}}
+\subsubsection[{normalize\-\_\-tree}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf normalize\-\_\-tree} (
+\begin{DoxyParamCaption}
+\item[{{\bf node} $\ast$}]{norm\-\_\-node}
+\end{DoxyParamCaption}
+)}}\label{heapsort_8c_a580ecbc62e8d2a6d23fef3b89ef14cb2}
+
+
+
+\begin{DoxyItemize}
+\item The passed in node is tested against its parent, and swapped if it is smaller than the parent. This is done recursively until the condition is satisfied. 
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em norm\-\_\-node} & -\/ node to be normalized \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\hypertarget{heapsort_8c_aa6c835e9bea339bcc4e982c5e32b50c1}{\index{heapsort.\-c@{heapsort.\-c}!print\-\_\-tree@{print\-\_\-tree}}
+\index{print\-\_\-tree@{print\-\_\-tree}!heapsort.c@{heapsort.\-c}}
+\subsubsection[{print\-\_\-tree}]{\setlength{\rightskip}{0pt plus 5cm}{\bf print\-\_\-tree} (
+\begin{DoxyParamCaption}
+\item[{{\bf node} $\ast$}]{root}
+\end{DoxyParamCaption}
+)}}\label{heapsort_8c_aa6c835e9bea339bcc4e982c5e32b50c1}
+
+
+
+\begin{DoxyItemize}
+\item print all nodes in the tree recursively 
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em root} & -\/ Node to get right-\/child of \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+F\-U\-N\-C\-T\-I\-O\-N I\-S R\-E\-C\-U\-R\-S\-I\-V\-E 
+\end{DoxyNote}
+\hypertarget{heapsort_8c_acac0d5c0f61b4b04105e120f8538aa32}{\index{heapsort.\-c@{heapsort.\-c}!swap@{swap}}
+\index{swap@{swap}!heapsort.c@{heapsort.\-c}}
+\subsubsection[{swap}]{\setlength{\rightskip}{0pt plus 5cm}{\bf swap} (
+\begin{DoxyParamCaption}
+\item[{{\bf node} $\ast$}]{child, }
+\item[{{\bf node} $\ast$}]{parent}
+\end{DoxyParamCaption}
+)}}\label{heapsort_8c_acac0d5c0f61b4b04105e120f8538aa32}
+
+
+
+\begin{DoxyItemize}
+\item Swap parent and child data so child's data is assigned to the parent and vice-\/versa 
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em child} & -\/ child node \\
+\hline
+{\em parent} & -\/ parent node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
