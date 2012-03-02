@@ -1,23 +1,26 @@
-#include"heapsort.h"
-
-#define NEXT	1
-#define PREV	0
+#include "heapsort.h"
 
 typedef void (*fnptr) (node **, int, node*);
 
-node *new()
+fnptr fn_arr[] = 
 {
-	node *new_node = (node*) malloc(sizeof(*new_node));
-	new_node->link[NEXT] = new_node->link[PREV] = NULL;
-	return (new_node);
-}
+	insert_node,
+	append_link_node,
+	delete_node,
+	print_nodes,
+	free_link_nodes
+};
 
-//
-// Add link node
-// Always adds to the end of the list
-//
+/*******************************************************************
+	\fn append_link_node(node**, int, node*)
+	\brief - Append the node to the end of the list 
+	\param head - list head
+	\param data - Node data
+	\param parent - node parent
+	\return void
+*******************************************************************/
 
-static void add_link_node(node **head, int data, node *parent)
+void append_link_node(node **head, int data, node *parent)
 {
 	if(NULL == *head)
 	{
@@ -28,10 +31,18 @@ static void add_link_node(node **head, int data, node *parent)
 	}
 	else
 	{
-		add_link_node(&((*head)->link[NEXT]), data, *head);
+		append_link_node(&((*head)->link[NEXT]), data, *head);
 	}
 }
 
+/*******************************************************************
+	\fn print_nodes(node**, int, node*)
+	\brief - print the nodes
+	\param head - list head
+	\param data - Node data
+	\param parent - node parent
+	\return void
+*******************************************************************/
 void print_nodes(node **head, int data, node *dontcare)
 {
 	node *iter = *head;
@@ -43,7 +54,14 @@ void print_nodes(node **head, int data, node *dontcare)
 	printf("\n");
 }
 
-//void free_nodes(node *head)
+/*******************************************************************
+	\fn free_link_nodes(node**, int, node*)
+	\brief - Free all the nodes
+	\param head - list head
+	\param data - Node data
+	\param parent - node parent
+	\return void
+*******************************************************************/
 void free_link_nodes(node **head, int data, node *dontcare)
 {
 	node *iter = *head;
@@ -56,15 +74,14 @@ void free_link_nodes(node **head, int data, node *dontcare)
 	}
 }
 
-void print_exit()
-{
-	printf("I'mma has-been\n");
-}
-
-//
-// Insert Node
-// Handling inserting node in between, at the start or end of the list
-//
+/*******************************************************************
+	\fn insert_node(node**, int, node*)
+	\brief - Handling inserting node in between, at the start or end of the list
+	\param head - list head
+	\param data - Node data
+	\param parent - node parent
+	\return void
+*******************************************************************/
 void insert_node(node **head, int data, node *dontcare)
 {
 	printf("Inserting data %d\n", data);
@@ -75,13 +92,13 @@ void insert_node(node **head, int data, node *dontcare)
 	// the first node.
 	if(NULL == *head)
 	{
-		add_link_node(head, data, NULL);
+		append_link_node(head, data, NULL);
 		return;
 	}
 
 
 	// Check if we need to insert before head
-	while(iter != NULL)
+	while(NULL != iter)
 	{
 		if(data < iter->data)
 		{
@@ -98,22 +115,19 @@ void insert_node(node **head, int data, node *dontcare)
 		iter = prev;
 	}
 
+	node *new_node = new();
+	new_node->data = data;
+
 	// Inserting before head, i.e this will be the new head
 	if(NULL == iter->link[PREV])
 	{
-		node *new_node = new();
-		new_node->data = data;
 		new_node->link[PREV] = NULL;
 		new_node->link[NEXT] = *head;
-		printf("Created node with data %d.. reforming links\n", new_node->data);
 		(*head) = new_node; 
 	}
 	else
 	{
-		printf("Not inserting at the beginning\n");
-		node *new_node = new();
 		new_node->data = data;
-		printf("Created node with data %d.. reforming links\n", new_node->data);
 		(iter->link[PREV])->link[NEXT] = new_node;
 		new_node->link[PREV] = iter->link[PREV];
 		new_node->link[NEXT] = iter;
@@ -121,11 +135,14 @@ void insert_node(node **head, int data, node *dontcare)
 	}
 }
 
-//
-// Delete node
-// Handles deleting nodes from the middle, start or end of list
-//
-
+/*******************************************************************
+	\fn delete_node(node**, int, node*)
+	\brief - Handling deleting node in between, at the start or end of the list
+	\param head - list head
+	\param data - Node data
+	\param parent - node parent
+	\return void
+*******************************************************************/
 void delete_node(node **head, int data, node *dontcare)
 {
 	node *iter = *head;
@@ -166,16 +183,6 @@ void delete_node(node **head, int data, node *dontcare)
 }
 
 
-
-fnptr fn_arr[] = 
-{
-	insert_node,
-	add_link_node,
-	delete_node,
-	print_nodes,
-	free_link_nodes
-};
-
 int main()
 {
 	int opt = 0;
@@ -183,7 +190,6 @@ int main()
 
 	node *head = NULL;
 
-	atexit(print_exit);
 	while(1)
 	{
 		printf("Enter option: \

@@ -4,7 +4,7 @@
 * @author Rohan Ambli
 */
 
-#include"heapsort.h"
+#include "heapsort.h"
 
 /**
 	\fn free_nodes(node *root)
@@ -17,8 +17,8 @@ void free_nodes(node *root)
 {
 	if(NULL != root)
 	{
-		free_nodes(root->link[0]);
-		free_nodes(root->link[1]);
+		free_nodes(root->link[LEFT]);
+		free_nodes(root->link[RIGHT]);
 		PRINT("free'ing %d\n", root->data);
 		free(root);
 	}
@@ -37,10 +37,10 @@ void free_nodes(node *root)
 
 node *create_node(int data, node *parent)
 {
-	node *ndata = (node*)malloc(sizeof(node));
+	node *ndata = new();
 	if(NULL != ndata)
 	{
-		ndata->link[0] = ndata->link[1] = NULL;
+		ndata->link[LEFT] = ndata->link[RIGHT] = NULL;
 		ndata->data = data;
 		ndata->parent = parent;
 		if(NULL != parent)
@@ -69,7 +69,9 @@ void add_node(node **root, int data, node *parent)
 	{
 		*root = create_node(data, parent);
 		/* Created node, re-arrange it in the tree such that it is
-		   smaller than its parent */
+		   smaller than its parent. If normalizing, then tree is used
+		   used in heapsort. If normalizing is skipped, it is a regular
+		   binary tree. */
 		//normalize_tree(*root);
 	}
 	else
@@ -93,21 +95,13 @@ node *find_node(node *root, int data)
 {
 	node *found = NULL;
 	if(NULL == root)
-	{
-		PRINT("Hit a NULL bound\n");
 		found = NULL;
-	}
 	else
 	{
 		if(data == root->data)
-		{
 			found = root;
-		}
 		else
-		{
-			PRINT("Looking down %d[%c]\n", root->data, DIR(data,root->data)?'R':'L');
 			found = find_node(root->link[DIR(data,root->data)],data);
-		}
 	}
 	return (found);
 }
@@ -163,8 +157,14 @@ int find_tree_height(node *root)
 {
 	if (root == NULL) return 0;
 
-	int r = find_tree_height(root->link[1]);
-	int l = find_tree_height(root->link[0]);
+	int r = find_tree_height(root->link[RIGHT]);
+	int l = find_tree_height(root->link[LEFT]);
+
+	if(abs(l - r) >= 2)
+	{
+		PRINT("Tree is unbalanced l:%d r:%d\n", l, r);
+	}
+
 	return (1 + ((l > r) ? l:r)); 
 }
 
@@ -175,7 +175,6 @@ int find_tree_height(node *root)
 int main(void)
 {
 	node *root = NULL;
-	int arr[] = {200,5,20,4,15,1,6,25,10,150,3,21};
 	int i = 0;
 	int scan = 0;
 
@@ -190,7 +189,7 @@ int main(void)
 
 		//PRINT("Tree height is %d\n", find_tree_height(root));
 	}
-	/* Nodes are normalized, now begin extracting */
+	/* TODO: Nodes are normalized, now begin extracting */
 
 	print_tree(root);
 	free_nodes(root);

@@ -7,6 +7,23 @@
 
 #include"heapsort.h"
 
+
+/**	\fn new
+*	\brief - allocate space and return a new node
+*	\param void
+*	\return node * - New Node
+*/
+node *new()
+{
+	node *new_node = (node*) malloc(sizeof(*new_node));
+	if(NULL != new_node)
+	{
+		new_node->link[0] = new_node->link[1] = NULL;
+		new_node->data = 0;
+	}
+	return (new_node);
+}
+
 /**	\fn get_parent(node *ndata)
 *	\brief -  returns the nodes parent
 *	\param ndata - Node to get parent of
