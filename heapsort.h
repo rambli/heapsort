@@ -28,7 +28,7 @@
 #define LEFT	0
 #define RIGHT	1
 
-/** Determine whether to go left or right while added/looking for a child */
+/** Determine whether to go left or right while adding/looking for a child */
 #define DIR(node_data, parent_data) \
 	(node_data > parent_data)?RIGHT:LEFT
 
