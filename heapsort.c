@@ -12,12 +12,12 @@
 *		  is recursively traversed to find the right place where 
 *		  the new node can be inserted. If (data < root->data), 
 *		  then it is inserted to the left, else to the right.
-*		  Once inserted, the tree is normalized.
+*		  Once inserted, the tree is normalized. (normalize_tree)
 *	\param root - root node
 *	\param data - new data to be added
 *	\param parent - parent for the new node
 *	\return void
-*	\note FUNCTION IS RECURSIVE
+*	\note FUNCTION IS RECURSIVE. this is on the coding-conventions branch
 *******************************************************************/
 
 void add_node(node **root, int data, node *parent)
