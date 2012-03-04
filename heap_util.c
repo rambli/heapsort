@@ -208,14 +208,16 @@ node *create_node(int data, node *parent)
 node *find_node(node *root, int data)
 {
 	node *found = NULL;
-	if(NULL == root)
-		found = NULL;
-	else
+	if(NULL != root)
 	{
 		if(data == root->data)
 			found = root;
 		else
 			found = find_node(root->link[DIR(data,root->data)],data);
+	}
+	else
+	{
+		found = NULL;
 	}
 	return (found);
 }
@@ -229,7 +231,7 @@ node *find_node(node *root, int data)
 ******************************************************************************/
 node *get_last_child(node *root)
 {
-	while(root)
+	while(NULL != root)
 	{
 		if(is_leaf_node(root))
 		{

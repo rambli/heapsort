@@ -17,12 +17,17 @@
 *	\param data - new data to be added
 *	\param parent - parent for the new node
 *	\return void
-*	\note FUNCTION IS RECURSIVE, this is on the master branch
+*	\note FUNCTION IS RECURSIVE
 *******************************************************************/
 
 void add_node(node **root, int data, node *parent)
 {
-	if (NULL == *root)
+	if (NULL != *root)
+	{
+		parent = *root;
+		add_node(&((*root)->link[DIR(data,(*root)->data)]), data, parent);
+	}
+	else
 	{
 		*root = create_node(data, parent);
 		/* Created node, re-arrange it in the tree such that it is
@@ -30,11 +35,6 @@ void add_node(node **root, int data, node *parent)
 		   used in heapsort. If normalizing is skipped, it is a regular
 		   binary tree. */
 		normalize_tree(*root);
-	}
-	else
-	{
-		parent = *root;
-		add_node(&((*root)->link[DIR(data,(*root)->data)]), data, parent);
 	}
 }
 
@@ -127,7 +127,7 @@ void sort(node **root)
 {
 	int i = 10;
 	node *lc = NULL;
-	while(*root)
+	while(NULL != *root)
 	{
 		/* Get last node which is one of the largest nodes (definitely larger than our current root)
 		   and make it the root of the tree. Then normalize tree so the next smallest number can 
