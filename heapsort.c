@@ -12,7 +12,7 @@
 *		  is recursively traversed to find the right place where 
 *		  the new node can be inserted. If (data < root->data), 
 *		  then it is inserted to the left, else to the right.
-*		  Once inserted, the tree is normalized.
+*		  Once inserted, the tree is normalized. (normalize_tree)
 *	\param root - root node
 *	\param data - new data to be added
 *	\param parent - parent for the new node
