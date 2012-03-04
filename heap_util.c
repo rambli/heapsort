@@ -7,7 +7,7 @@
 
 #include "heapsort.h"
 
-/*********************************************************
+/*!*******************************************************
 *	\fn new
 *	\brief - allocate space and return a new node
 *	\param void
@@ -24,7 +24,7 @@ node *new()
 	return (new_node);
 }
 
-/*********************************************************
+/*!*******************************************************
 *	\fn get_parent(node *ndata)
 *	\brief -  returns the nodes parent
 *	\param ndata - Node to get parent of
@@ -37,7 +37,7 @@ node* get_parent(node *ndata)
 	return (ndata->parent); 
 }
 
-/*********************************************************
+/*!*******************************************************
 *	\fn get_rchild(node *parent)
 *	\brief -  returns the parent's right child
 *	\param parent - parent node to get right-child of
@@ -50,8 +50,8 @@ node *get_rchild(node *parent)
 	return (parent->link[1]);
 }
 
-/*********************************************************
-*	\fn get_lchild(node*)
+/*!*******************************************************
+*	\fn get_lchild(node *parent)
 *	\brief -  returns the parent's left child
 *	\param parent - parent node to get left child of
 *	\return node * - left child
@@ -64,8 +64,8 @@ node *get_lchild(node *parent)
 	return (parent->link[0]);
 }
 
-/*********************************************************
-*	\fn is_leaf_node(node *)
+/*!*******************************************************
+*	\fn is_leaf_node(node *n)
 *	\brief -  returns whether a node is a leaf node or 
 *		  not i.e both L and R children are NULL
 *	\param n - Node to check
@@ -79,7 +79,7 @@ bool is_leaf_node(node *n)
 }
 
 
-/*********************************************************
+/*!*******************************************************
 *	\fn get_smaller_child(node *)
 *	\brief -  returns the smaller child
 *	\param parent - Node to check
@@ -98,7 +98,7 @@ node *get_smaller_child(node *parent)
 		return (parent->link[0]->data > parent->link[1]->data ? parent->link[1]:parent->link[0]);
 }
 
-/*********************************************************
+/*!*******************************************************
 *	\fn get_larger_child(node *)
 *	\brief -  returns the larger child
 *	\param parent - Node to check
@@ -116,10 +116,10 @@ node *get_larger_child(node *parent)
 	return (parent->link[0]->data < parent->link[1]->data ? parent->link[1]:parent->link[0]);
 }
 
-/*********************************************************
+/*!*******************************************************
 *	\fn print_tree(node *root)
 *	\brief -  print all nodes in the tree recursively
-*	@param root - Node to get right-child of
+*	\param root - Node to get right-child of
 *	\return void
 *	\note FUNCTION IS RECURSIVE
 *********************************************************/
@@ -136,7 +136,7 @@ void print_tree(node *root)
 	return;
 }
 
-/*********************************************************
+/*!*******************************************************
 *	\fn swap(node *child, node * parent)
 *	\brief -  Swap parent and child data so child's data is assigned 
 *		  to the parent and vice-versa
@@ -155,7 +155,7 @@ void swap(node *child, node *parent)
 	}
 }
 
-/*********************************************************
+/*!*******************************************************
 *	\fn free_tree(node *root)
 *	\brief -  free all nodes in the tree recursively
 *	\param  root - tree root
@@ -173,7 +173,7 @@ void free_tree(node *root)
 	return;
 }
 
-/*******************************************************************
+/*!*****************************************************************
 *	\fn create_node(int data, node *parent)
 *	\brief -  create a new node with the passed in data. 
 *		  Children are set to NULL
@@ -196,7 +196,7 @@ node *create_node(int data, node *parent)
 	return (ndata);
 }
 
-/*******************************************************************
+/*!*****************************************************************
 *	\fn add_node(node **root, int data, node *parent)
 *	\brief -  Create and add a new node to the passed in root, which 
 *		  is recursively traversed to find the right place where 
@@ -228,7 +228,7 @@ void add_node(node **root, int data, node *parent)
 	}
 }
 
-/******************************************************************************
+/*!****************************************************************************
 *	\fn find_node(node *root, int data)
 *	\brief -  Find the node which matches the passed in data.
 *	\param root - tree root
@@ -253,7 +253,7 @@ node *find_node(node *root, int data)
 }
 
 
-/******************************************************************************
+/*!****************************************************************************
 *	\fn get_last_child(node *root)
 *	\brief - Find the lowest child of the tree (has to be a leaf node)
 *	\param norm_node - tree root
@@ -276,7 +276,7 @@ node *get_last_child(node *root)
 	}
 }
 
-/******************************************************************************
+/*!****************************************************************************
 *	\fn find_tree_height(node *root)
 *	\brief - Find the height of the tree
 *	\param norm_node - tree root

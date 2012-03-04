@@ -96,7 +96,9 @@ WARN_LOGFILE           =
 #---------------------------------------------------------------------------
 # configuration options related to the input files
 #---------------------------------------------------------------------------
-INPUT                  = /Users/ambli/work/c_prog/heapsort/heapsort.c /Users/ambli/work/c_prog/heapsort/heapsort.h
+INPUT                  = /Users/ambli/work/c_prog/heapsort/heapsort.h \ 
+			 /Users/ambli/work/c_prog/heapsort/heapsort.c \
+			 /Users/ambli/work/c_prog/heapsort/heap_util.c
 INPUT_ENCODING         = UTF-8
 FILE_PATTERNS          = *.c *.h
 RECURSIVE              = YES

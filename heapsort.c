@@ -6,14 +6,13 @@
 
 #include "heapsort.h"
 
-/******************************************************************************
+/*!***************************************************************************
 	\fn normalize_tree(node *norm_node)
 	\brief - The passed in node is tested against its parent, and swapped if it is smaller
 	       than the parent. This is done recursively until the condition is satisfied.
 	\param norm_node - node to be normalized
 	\return void
 *****************************************************************************/
-
 void normalize_tree(node *norm_node)
 {
 	if(NULL == norm_node)
@@ -51,8 +50,8 @@ void normalize_tree(node *norm_node)
 	return;
 }
 
-/******************************************************************************
-	\fn normalize_tree_root(node *rnorm_node)
+/*!***************************************************************************
+	\fn normalize_tree_root(node *root)
 	\brief - During sorting, the largest child is brought up to the root
 		 as the root being the smallest is extracted. The tree needs to 
 		 be normalized top-down so the the next smallest node floats to 
@@ -60,10 +59,9 @@ void normalize_tree(node *norm_node)
 		 node is added to the bottom and checked if it needs to be sent up
 		 top. Here we add a node to the top and check if it needs to be
 		 sent lower in the tree.
-	\param norm_node - rnorm_node
+	\param node* - tree root
 	\return void
 *****************************************************************************/
-
 void normalize_tree_root(node *root)
 {
 	node *sc = NULL;
@@ -87,7 +85,7 @@ void normalize_tree_root(node *root)
 }
 
 
-/******************************************************************************
+/*!***************************************************************************
 	\fn sort(node **root)
 	\brief - The sorting function
 	\param **root - tree root
@@ -147,7 +145,7 @@ void sort(node **root)
 	}
 }
 
-/***************************************************************************
+/*!*************************************************************************
 	\fn main
 	\brief - main fn to perform heapsort
 ****************************************************************************/
