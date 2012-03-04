@@ -17,7 +17,7 @@
 *	\param data - new data to be added
 *	\param parent - parent for the new node
 *	\return void
-*	\note FUNCTION IS RECURSIVE
+*	\note FUNCTION IS RECURSIVE, this is on the master branch
 *******************************************************************/
 
 void add_node(node **root, int data, node *parent)
