@@ -6,6 +6,38 @@
 
 #include "heapsort.h"
 
+/*!*****************************************************************
+*	\fn add_node(node **root, int data, node *parent)
+*	\brief -  Create and add a new node to the passed in root, which 
+*		  is recursively traversed to find the right place where 
+*		  the new node can be inserted. If (data < root->data), 
+*		  then it is inserted to the left, else to the right.
+*		  Once inserted, the tree is normalized.
+*	\param root - root node
+*	\param data - new data to be added
+*	\param parent - parent for the new node
+*	\return void
+*	\note FUNCTION IS RECURSIVE
+*******************************************************************/
+
+void add_node(node **root, int data, node *parent)
+{
+	if (NULL == *root)
+	{
+		*root = create_node(data, parent);
+		/* Created node, re-arrange it in the tree such that it is
+		   smaller than its parent. If normalizing, then tree is used
+		   used in heapsort. If normalizing is skipped, it is a regular
+		   binary tree. */
+		normalize_tree(*root);
+	}
+	else
+	{
+		parent = *root;
+		add_node(&((*root)->link[DIR(data,(*root)->data)]), data, parent);
+	}
+}
+
 /*!***************************************************************************
 	\fn normalize_tree(node *norm_node)
 	\brief - The passed in node is tested against its parent, and swapped if it is smaller
