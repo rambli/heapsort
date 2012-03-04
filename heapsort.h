@@ -15,7 +15,7 @@
 #define NUM_LINKS (2)
 
 /** If DEBUG is defined, printf will print, else will be commented out */
-#define DEBUG
+//#define DEBUG
 #ifdef DEBUG
  #define PRINT printf
 #else
@@ -58,24 +58,35 @@ typedef enum _bool
 	TRUE
 }bool;
 
-// Common functions
+/* Common functions */
 node* new();
 
-// Heap functions
+/* Heap functions */
+
+/* Tree normalizing functions, only if heapsort is required */
 void normalize_tree(node *norm_node);
+void normalize_tree_root(node *norm_node);
+
+/* Node functions */
 node* get_parent(node *ndata);
 node* get_rchild(node *parent);
 node* get_lchild(node *parent);
-bool is_leaf_node(node *n);
-void free_nodes(node *root);
-void print_tree(node *root);
+node* get_smaller_child(node *parent);
+node* get_larger_child(node *parent);
+node* get_last_child(node *root);
+node* find_node(node *root, int data);
+
+/* Node creation/adding */
 node* create_node(int data, node *parent);
 void add_node(node **root, int data, node *parent);
-node* find_node(node *root, int data);
-void swap(node *child, node *parent);
-void normalize_tree(node *norm_node);
 
-// Linked list functions
+/* Util functions */
+bool is_leaf_node(node *n);
+void swap(node *child, node *parent);
+void free_tree(node *root);
+void print_tree(node *root);
+
+/* Linked list functions */
 void append_link_node(node **head, int data, node *parent);
 void print_nodes(node **head, int data, node *dontcare);
 void free_link_nodes(node **head, int data, node *dontcare);
