@@ -15,7 +15,7 @@
 #define NUM_LINKS (2)
 
 /** If DEBUG is defined, printf will print, else will be commented out */
-//#define DEBUG
+#define DEBUG
 #ifdef DEBUG
  #define PRINT printf
 #else
@@ -23,12 +23,12 @@
 #endif
 
 /*! Macros for linked list nodes */
-#define NEXT	1	/*! Next index of link */
-#define PREV	0	/*! Previous index of link */
+#define NEXT	1
+#define PREV	0
 
 /*! Macros for binary tree nodes */
-#define LEFT	0	/*! Left index of link */
-#define RIGHT	1	/*! Right index of link */
+#define LEFT	0
+#define RIGHT	1
 
 /** Determine whether to go left or right while adding/looking for a child */
 #define DIR(node_data, parent_data) \
@@ -219,6 +219,15 @@ void print_tree(node *root);
 ******************************************************************************/
 int find_tree_height(node *root); 
 
+
+/*!****************************************************************************
+*	\fn find_tree_balance(node *root)
+*	\brief - Find the balance of the tree
+*	\param norm_node - tree root
+*	\return - tree balance (+ve - Right heavy, -ve - Left heavy)
+******************************************************************************/
+int find_tree_balance(node *root); 
+
 /*!*****************************************************************
 	\fn append_link_node(node**, int, node*)
 	\brief - Append the node to the end of the list 
@@ -268,5 +277,31 @@ void insert_node(node **head, int data, node *dontcare);
 	\return void
 *******************************************************************/
 void delete_node(node **head, int data, node *dontcare);
+
+/*!****************************************************************************
+*	\fn rotate_tree_left(node **root)
+*	\brief - Rotate tree left, making right node below the root the new root
+*	\param root - tree root
+*	\return - void
+******************************************************************************/
+void rotate_tree_left(node **root);
+
+/*!****************************************************************************
+*	\fn rotate_tree_right(node **root)
+*	\brief - Rotate tree right, making left node below the root the new root
+*	\param root - tree root
+*	\return - void
+******************************************************************************/
+void rotate_tree_right(node **root);
+
+/*!***************************************************************************
+	\fn balance_tree(node **root)
+	\brief - Called when the tree is unbalanced, to, well... balance it A balance
+            factor of 2 is used. +ve implies RHS is heavier, -ve implies LHS is 
+            heavier.
+	\param **root - tree root
+	\return - void
+*****************************************************************************/
+void balance_tree(node **root);
 
 #endif // _HEAPSORT_H_

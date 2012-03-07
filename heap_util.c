@@ -127,6 +127,8 @@ void print_tree(node *root)
 {
 	if(NULL != root)
 	{
+      if(NULL == root->parent)
+         printf("<ROOT>");
 		printf(" %d ",root->data);
 		if(NULL != root->parent)
 			printf("p:%d ", root->parent->data);
@@ -252,13 +254,91 @@ int find_tree_height(node *root)
 {
 	if (root == NULL) return 0;
 
-	int r = find_tree_height(root->link[RIGHT]);
 	int l = find_tree_height(root->link[LEFT]);
+	int r = find_tree_height(root->link[RIGHT]);
 #if 0
 	if(abs(l - r) >= 2)
 	{
 		PRINT("Tree is unbalanced l:%d r:%d\n", l, r);
 	}
+   PRINT("height: l: %d r: %d\n", l, r);
 #endif
 	return (1 + ((l > r) ? l:r)); 
+}
+
+/*!****************************************************************************
+*	\fn find_tree_balance(node *root)
+*	\brief - Find the balance of the tree
+*	\param norm_node - tree root
+*	\return - tree balance (+ve - Right heavy, -ve - Left heavy)
+******************************************************************************/
+int find_tree_balance(node *root) 
+{
+	if (root == NULL) return 0;
+
+	int l = find_tree_height(root->link[LEFT]);
+	int r = find_tree_height(root->link[RIGHT]);
+#if 0
+	if(abs(l - r) >= 2)
+	{
+		PRINT("Tree is unbalanced l:%d r:%d\n", l, r);
+	}
+   PRINT("height: l: %d r: %d\n", l, r);
+#endif
+   return (r-l);
+}
+/*!****************************************************************************
+*	\fn rotate_tree_left(node **root)
+*	\brief - Rotate tree left, making right node below the root the new root
+*	\param root - tree root
+*	\return - void
+******************************************************************************/
+void rotate_tree_left(node **root)
+{
+   node *new_root = get_rchild(*root);
+   node *old_root = *root;
+
+   PRINT("Rotating tree to left - root: %d new_root: %d\n", 
+         old_root->data, new_root->data);
+
+   /* New root's left child becomes old root's right child
+    * Set the child's parent as the old_root as well */
+   (*root)->link[RIGHT] = new_root->link[LEFT];
+   if(NULL != new_root->link[LEFT])
+      (new_root->link[LEFT])->parent = (*root);
+   /* Update *root to new_root */
+   *root = new_root;
+   /* New root's left child is now old_root */
+   (*root)->link[LEFT] = old_root;
+   /* Update parents */
+   old_root->parent = *root;
+   (*root)->parent = NULL;
+}
+
+/*!****************************************************************************
+*	\fn rotate_tree_right(node **root)
+*	\brief - Rotate tree right, making left node below the root the new root
+*	\param root - tree root
+*	\return - void
+******************************************************************************/
+void rotate_tree_right(node **root)
+{
+   node *new_root = get_lchild(*root);
+   node *old_root = *root;
+
+   PRINT("Rotating tree to right - root: %d new_root: %d\n", 
+         (*root)->data, (get_lchild(*root))->data);
+
+   /* New root's right child becomes old root's left child
+    * Set the child's parent as the old_root as well */
+   (*root)->link[LEFT] = new_root->link[RIGHT];
+   if(NULL != new_root->link[RIGHT])
+      (new_root->link[RIGHT])->parent = (*root);
+   /* Update *root to new_root */
+   *root = new_root;
+   /* New root's left child is now old_root */
+   (*root)->link[RIGHT] = old_root;
+   /* Update parents */
+   old_root->parent = *root;
+   (*root)->parent = NULL;
 }

@@ -4,7 +4,10 @@
 * @author Rohan Ambli
 */
 
+
 #include "heapsort.h"
+
+//#define HEAPSORT
 
 /*!*****************************************************************
 *	\fn add_node(node **root, int data, node *parent)
@@ -30,11 +33,13 @@ void add_node(node **root, int data, node *parent)
 	else
 	{
 		*root = create_node(data, parent);
-		/* Created node, re-arrange it in the tree such that it is
+     #ifdef HEAPSORT
+      /* Created node, re-arrange it in the tree such that it is
 		   smaller than its parent. If normalizing, then tree is used
 		   used in heapsort. If normalizing is skipped, it is a regular
 		   binary tree. */
 		normalize_tree(*root);
+     #endif /* HEAPSORT */  
 	}
 }
 
@@ -177,6 +182,28 @@ void sort(node **root)
 	}
 }
 
+/*!***************************************************************************
+	\fn balance_tree(node **root)
+	\brief - Called when the tree is unbalanced, to, well... balance it.
+	\param **root - tree root
+	\return - void
+*****************************************************************************/
+void balance_tree(node **root)
+{
+   int height = find_tree_balance(*root);
+
+   /* If balance goes over 2, rebalance the tree */
+   if(2 < abs(height))
+   {
+      node *oldroot = *root;
+      (height > 0) ? rotate_tree_left(root):rotate_tree_right(root);
+
+      height = find_tree_balance(*root);
+      PRINT("Old root: %d New root: %d(%p) height is %d\n", 
+            oldroot->data, (*root)->data, *root, height);
+   }
+}
+
 /*!*************************************************************************
 	\fn main
 	\brief - main fn to perform heapsort
@@ -184,14 +211,17 @@ void sort(node **root)
 int main(void)
 {
 	node *root = NULL;
-	int i = 0;
-	int scan = 0;
+	int      i = 0;
+	int   scan = 0;
 #if 0
 	int arr[] = {5,10,7,4,15,25,13};
 
 	for(i = 0; i < 7; i++)
 	{
 		add_node(&root, arr[i], root);
+    #ifndef HEAPSORT
+      balance_tree(&root);
+    #endif  /* !HEAPSORT */
 	}
 	PRINT("============ BEGIN SORTING============\n");
 #else
@@ -199,17 +229,24 @@ int main(void)
 	{
 		printf("Enter number:\n");
 		scanf("%d", &scan);
-		if(scan == (int)-1)
+		if(scan == (int)-100)
 			break;
 		else
+      {
 			add_node(&root, scan, root);
-		PRINT("Tree height is %d\n", find_tree_height(root));
-	}
+
+        #ifndef HEAPSORT
+         balance_tree(&root);
+        #endif  /* !HEAPSORT */
+      }
+   }
 #endif
-	/* TODO: Nodes are normalized, now begin extracting */
+
 	print_tree(root);
 	printf("\n");
-	sort(&root);
+  #ifdef HEAPSORT
+   sort(&root);
+  #endif /* HEAPSORT */
 	free_tree(root);
 	return 0;
 }
