@@ -96,14 +96,16 @@ WARN_LOGFILE           =
 #---------------------------------------------------------------------------
 # configuration options related to the input files
 #---------------------------------------------------------------------------
-INPUT                  = /Users/ambli/work/c_prog/heapsort/heapsort.h \ 
-			 /Users/ambli/work/c_prog/heapsort/heapsort.c \
-			 /Users/ambli/work/c_prog/heapsort/heap_util.c
+#INPUT                  = /Users/ambli/work/c_prog/heapsort/heapsort.h \ 
+#			 /Users/ambli/work/c_prog/heapsort/heapsort.c \
+#			 /Users/ambli/work/c_prog/heapsort/heap_util.c
+INPUT                  = /Users/ambli/work/c_prog/heapsort/ 
 INPUT_ENCODING         = UTF-8
 FILE_PATTERNS          = *.c *.h
 RECURSIVE              = YES
 EXCLUDE                = /Users/ambli/work/c_prog/heapsort/html/ \
-			 /Users/ambli/work/c_prog/heapsort/latex/
+			 /Users/ambli/work/c_prog/heapsort/latex/ \
+			 /Users/ambli/work/c_prog/heapsort/.git/
 EXCLUDE_SYMLINKS       = NO
 EXCLUDE_PATTERNS       =
 EXCLUDE_SYMBOLS        =

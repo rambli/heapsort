@@ -215,10 +215,6 @@ node *find_node(node *root, int data)
 		else
 			found = find_node(root->link[DIR(data,root->data)],data);
 	}
-	else
-	{
-		found = NULL;
-	}
 	return (found);
 }
 

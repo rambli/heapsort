@@ -194,8 +194,7 @@ int main(void)
 		add_node(&root, arr[i], root);
 	}
 	PRINT("============ BEGIN SORTING============\n");
-#endif
-#if 1
+#else
 	while(1)
 	{
 		printf("Enter number:\n");
@@ -204,7 +203,6 @@ int main(void)
 			break;
 		else
 			add_node(&root, scan, root);
-
 		PRINT("Tree height is %d\n", find_tree_height(root));
 	}
 #endif
