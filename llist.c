@@ -185,7 +185,7 @@ void delete_node(node **head, int data, node *dontcare)
 
 int main()
 {
-	int opt = 0;
+	unsigned int opt = 0;
 	int data = 0;
 
 	node *head = NULL;
@@ -200,13 +200,15 @@ int main()
 			\n5)Quit\n");
 		scanf("%d", &opt);
 
-		if((opt != 4) && (opt != 5))
+      if(5 == opt)
+         break;
+		else if((5 < opt))
+			continue;
+      else if(4 != opt)
 		{
 			printf("Enter data:\n");
 			scanf("%d",&data);
 		}
-		else if(5 == opt)
-			break;
 
 		fn_arr[opt-1](&head, data, head);
 	}
